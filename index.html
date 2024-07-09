@@ -511,7 +511,7 @@ Urgent and serious.
                         </div>
                     </div>
                     <div class="right-contact">
-                        <form action="https://formspree.io/f/xdoqqngg" method="POST" class="contact-form">
+                        <form  method="POST" class="contact-form" id="contact-form">
                             <div class="input-control i-c-2">
                                 <input type="text" name="firstName" required placeholder="FIRST NAME">
                                 <input type="text" name="lastName" required placeholder="LAST NAME">
@@ -557,6 +557,27 @@ Urgent and serious.
         <i class="fas fa-adjust"></i>
     </div>
     <script src="app.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({
+                publicKey: "tdzgND3AQf65PFdZY",
+            });
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById('contact-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+                emailjs.sendForm('service_hr2e3be', 'template_x9wu6u7', this)
+                    .then(() => {
+                        alert('Thanks for you email. I will reply soon.');
+                    }, (error) => {
+                        alert(JSON.stringify(err));
+                    });
+            });
+        }
+    </script>
 </body>
 
 </html>
